@@ -1,0 +1,8 @@
+{
+  "_comment": "Keyword -> memory file. Words shorter than 5 characters only count as whole words, longer ones also as word start (e.g. 'compact' matches 'compaction'). Title words from INDEX.md (5+ characters) count automatically. '_knowledge' words add '_knowledge_hint' to the note.",
+  "_knowledge": ["gpu", "graphics card", "vram", "ram", "cpu", "nas", "docker", "container", "router", "port", "server", "model", "version", "driver"],
+  "_knowledge_hint": "Technical topic: check concrete facts (hardware, models, ports, versions) in your knowledge file before answering, not from memory.",
+  "hardware.md": ["gpu", "graphics card", "vram", "ram", "cpu", "processor", "hardware", "fits on", "runs on", "model", "models"],
+  "coding-preferences.md": ["code", "script", "python", "refactor", "backup", "commit"],
+  "compaction.md": ["compact", "context", "summary", "tokens"]
+}

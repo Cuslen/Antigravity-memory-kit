@@ -1,0 +1,11 @@
+{
+  "memory-kit": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "python souffleur.py",
+        "timeout": 5
+      }
+    ]
+  }
+}

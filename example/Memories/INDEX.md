@@ -1,0 +1,3 @@
+- PC hardware | hardware.md | Ryzen 7 7700, 32 GB RAM, RTX 4070 12 GB (never 64 GB, never a 3070!).
+- Coding preferences | coding-preferences.md | Backup before every change; minimal diffs, no refactoring of running scripts.
+- Compaction | compaction.md | Auto-compaction ~243k–265k tokens; save right away; after compaction read INDEX.md again.
