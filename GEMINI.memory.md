@@ -16,6 +16,7 @@ Delete the KNOWLEDGE lines if you don't keep such a file.
 - What you remember: <USER>'s decisions and preferences, corrections of you ("that was wrong because …"), the state of running projects, things you should not ask again.
 - What you don't remember: passwords, keys, account numbers; anything that already has its own file.
 - Before creating a memory, check whether a matching one exists and update it instead of creating a duplicate. Wrong memories are corrected, not deleted.
+- Every memory ends with a line `Keywords: word1, word2, …` – 3 to 12 words <USER> would use when the topic comes up (names, places, technical terms). The Souffleur hook reads this line. No everyday words ("make", "get", "go"): words under 5 letters only match as a whole word, longer ones also as word start ("comp" would not fire on "compaction", "compact" would).
 - After every new or changed memory you update INDEX.md. Keep the index short, at most one line per entry.
 - Rather one memory too many than one too few – disk space doesn't matter, what isn't in a file is lost at the next compaction.
 - If a note starting with "Souffleur (automatic, not written by the user)" appears before your answer, read the files it names before you rely on the topic.

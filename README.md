@@ -58,8 +58,11 @@ hook ran and what it matched – it never stores the text of your messages.
 ## How the Souffleur decides
 
 - A memory matches when your message contains one of its keywords from `souffleur_keywords.json`,
-  or a word (5+ letters) from its title in `INDEX.md`. New memories are therefore found by their title
-  without touching the keyword list.
+  a word (5+ letters) from its title in `INDEX.md`, or a word from the `Keywords:` line at the end of
+  the memory file. Gemini writes that line herself when she creates a memory (rule in `GEMINI.memory.md`),
+  so new memories are hooked up right away without touching the keyword list.
+- From the `Keywords:` line at most 12 words count, and everyday words (`STOPWORDS` in `souffleur.py`,
+  e.g. "make", "get") are dropped – add your own if a word fires too often.
 - Words shorter than 5 characters must match as a whole word (`ram` doesn't fire on `program`),
   longer ones also as word start (`compact` fires on `compaction`).
 - At most 4 memories per note, best matches first. `_knowledge` words add an extra hint
@@ -90,9 +93,16 @@ documentation ships inside the Antigravity installation (`resources/bin/language
 ## Caveats
 
 - Built on **undocumented** behaviour (hook events, transcript format). An Antigravity update can break it.
-- Tested on Windows 11 with Antigravity 2.0 only.
+- Tested on Windows 11 with Antigravity 2.0 (up to v2.28.2) only.
 - The keyword matching is simple on purpose. It won't catch everything – add words when you notice a miss.
 - Not affiliated with Google. "Gemini" and "Antigravity" are trademarks of Google.
+
+## Changelog
+
+- **1.0.1** – Memories can carry their own triggers: a `Keywords:` line at the end of a memory file is read
+  by the Souffleur (with a stopword filter and a cap of 12 words). New GEMINI.md rule so Gemini adds the line
+  whenever she creates a memory. Examples updated.
+- **1.0.0** – First release.
 
 ## Related
 
