@@ -10,3 +10,5 @@ On 2026-10-19 I casually said 64 GB RAM, and later called the GPU an RTX 3070. B
 
 ## How to apply
 Never guess hardware. Before any statement about hardware or which model fits into VRAM, check this file or the knowledge file.
+
+Keywords: gpu, vram, graphics card, rtx, ram, cpu, ryzen, hardware, fits on

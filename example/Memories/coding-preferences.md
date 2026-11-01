@@ -10,3 +10,5 @@ A "cleanup" once removed a fallback that turned out to be needed, and the script
 
 ## How to apply
 Propose changes as small diffs, mention the backup, and never remove existing fallbacks or defensive checks without asking.
+
+Keywords: backup, refactor, diff, fallback, script

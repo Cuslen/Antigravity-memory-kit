@@ -10,3 +10,5 @@ Twice a project decision existed only in the conversation and was gone after the
 1. Save decisions, preferences and corrections immediately (checkpoint before every answer).
 2. After a compaction, read INDEX.md again and work from the files, not from the summary.
 3. To look something up in the old conversation, use read_transcript.py (`last`, `search`, `images`).
+
+Keywords: compact, context, summary, transcript, tokens
