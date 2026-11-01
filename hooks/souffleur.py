@@ -1,8 +1,8 @@
 r"""Souffleur - a PreInvocation hook for Google Antigravity.
 
 Runs before every model call. Reads the user's last message, finds matching
-memory files (keyword list souffleur_keywords.json + title words from the
-memory INDEX.md) and injects a short, ephemeral note into Gemini's context -
+memory files (keyword list souffleur_keywords.json, title words from the
+memory INDEX.md and a "Keywords:" line inside each memory) and injects a short, ephemeral note into Gemini's context -
 once per user message: which file, the one-line summary from the INDEX and,
 for technical topics, an optional hint where to look things up.
 
@@ -30,7 +30,15 @@ MAX_HITS = 4
 # Title words that are too generic to trigger a memory on their own
 GENERIC = {"notes", "setup", "status", "memory", "memories", "workflow", "project",
            "projects", "general", "update", "about"}
+# A memory file may end with a line "Keywords: word1, word2, ..." - the model
+# maintains it itself when it creates the memory. Everyday words are dropped,
+# otherwise e.g. "make" would fire on every second message.
+MAX_FILE_KEYWORDS = 12
+STOPWORDS = {"make", "makes", "making", "get", "gets", "getting", "go", "going", "do", "doing",
+             "have", "thing", "things", "today", "tomorrow", "always", "never", "good", "new",
+             "file", "files", "question", "thanks", "please", "user", "gemini"}
 # -----------------------------------------------------------------------------
+KEYWORD_LINE = re.compile(r"^\W*keywords?\W*:\s*(.+)$", re.IGNORECASE)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 KEYWORDS = os.path.join(HERE, "souffleur_keywords.json")
@@ -110,6 +118,29 @@ def index_entries():
     return entries
 
 
+def file_keywords(file):
+    """Last 'Keywords:' line of a memory file, filtered and capped."""
+    if os.path.basename(file) != file:  # only files directly in MEMORY_DIR
+        return []
+    line = None
+    try:
+        with open(os.path.join(MEMORY_DIR, file), encoding="utf-8", errors="replace") as f:
+            for l in f:
+                m = KEYWORD_LINE.match(l.strip())
+                if m:
+                    line = m.group(1)
+    except OSError:
+        return []
+    if not line:
+        return []
+    words = []
+    for w in line.replace(";", ",").split(","):
+        w = w.strip(" *`\"'.").lower()
+        if len(w) >= 3 and w not in STOPWORDS and w not in words:
+            words.append(w)
+    return words[:MAX_FILE_KEYWORDS]
+
+
 def matches(text, word):
     w = re.escape(word.lower())
     if len(word) < 5:
@@ -121,7 +152,7 @@ def hits(text, keywords, index):
     t = text.lower()
     found = []
     for file, (title, _) in index.items():
-        words = list(keywords.get(file, []))
+        words = list(keywords.get(file, [])) + file_keywords(file)
         words += [w for w in re.findall(r"[^\W_]{5,}", title.lower()) if w not in GENERIC]
         n = sum(1 for w in set(words) if matches(t, w))
         if n:
