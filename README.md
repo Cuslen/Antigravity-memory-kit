@@ -93,7 +93,7 @@ documentation ships inside the Antigravity installation (`resources/bin/language
 ## Caveats
 
 - Built on **undocumented** behaviour (hook events, transcript format). An Antigravity update can break it.
-- Tested on Windows 11 with Antigravity 2.0 (up to v2.28.2) only.
+- Tested on Windows 11 with Antigravity 2.0 (up to v2.29.0) only.
 - The keyword matching is simple on purpose. It won't catch everything – add words when you notice a miss.
 - Not affiliated with Google. "Gemini" and "Antigravity" are trademarks of Google.
 
