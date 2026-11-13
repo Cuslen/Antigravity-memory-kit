@@ -30,5 +30,5 @@ Delete the KNOWLEDGE lines if you don't keep such a file.
   `python "<HOOK_DIR>\read_transcript.py" search "<pattern>"` – hits with context
   `python "<HOOK_DIR>\read_transcript.py" last [count]` – the last steps, when you don't know the step numbers
   `python "<HOOK_DIR>\read_transcript.py" steps <from> <to>` – a range of steps
-  `python "<HOOK_DIR>\read_transcript.py" images [count]` – paths of images <USER> sent; open them with view_file
+  `python "<HOOK_DIR>\read_transcript.py" images [count]` – paths of images <USER> sent; open them with read_file (named view_file before Antigravity v2.32)
   No own Python one-liners or grep/Select-String on the JSONL files – they need confirmation or flood your context with whole JSON lines.

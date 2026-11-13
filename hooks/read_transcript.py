@@ -16,7 +16,8 @@ Usage:
   last    Shows the last steps with text (default 10, max. 40) - after a
           compaction, when the step numbers are unknown.
   images  Lists the images the user sent, with step and path (default 10,
-          max. 50); open them with view_file.
+          max. 50); open them with read_file
+          (view_file before Antigravity v2.32).
   --chat  Start of the chat ID; default is the most recently active chat.
   --full  transcript_full.jsonl instead of transcript.jsonl.
 
